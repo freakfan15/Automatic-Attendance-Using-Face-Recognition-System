@@ -38,10 +38,10 @@ def markAttendance(name):
     now = datetime.now()
     dtString = now.strftime('%H:%M:%S')
     dateStr = now.strftime('%d-%m-%y')
-    mongoRead.insert(name = name,
-                     number = int(classNamesDict[name]),
-                     date = dateStr,
-                     time = dtString
+    mongoRead.insert(name=name,
+                     number=int(("1910102"+classNamesDict[name])),
+                     date=dateStr,
+                     time=dtString
                      )
 
 
@@ -75,7 +75,6 @@ while True:
             cv2.putText(img, name, (x1+6, y2-6),
                         cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
             markAttendance(name)
-            break
 
     cv2.imshow('Webcam', img)
     # Hit 'q' on the keyboard to quit!
