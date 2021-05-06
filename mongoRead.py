@@ -1,5 +1,3 @@
-from os import truncate
-from dns.rdatatype import NULL
 from pymongo import MongoClient
 
 client = MongoClient(
