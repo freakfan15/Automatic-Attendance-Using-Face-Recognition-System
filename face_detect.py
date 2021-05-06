@@ -10,18 +10,16 @@ path = 'ImagesAttendance'
 images = []
 classNames = []
 classNamesDict = dict()
-myList = []
-for c in os.listdir(path):
-    if(c != ".DS_Store"):
-        myList.append(c)
-print(myList)
+myList = [c for c in os.listdir(path)]
 for cl in myList:
-    imgFile = []
-    curImg = cv2.imread(f'{path}/{cl}')
-    images.append(curImg)
-    imgFile = os.path.splitext(cl)[0].split("_")
-    classNames.append(imgFile[0])
-    classNamesDict[(imgFile[0])] = imgFile[1]
+    if(cl!=".DS_Store"):
+        imgFile = []
+        curImg = cv2.imread(f'{path}/{cl}')
+        images.append(curImg)
+        imgFile = os.path.splitext(cl)[0].split("_")
+        classNames.append(imgFile[0])
+        classNamesDict[(imgFile[0])] = imgFile[1]
+
 print(classNamesDict)
 
 
@@ -44,7 +42,6 @@ def markAttendance(name):
                      time=dtString
                      )
 
-
 encodeListKnown = findEncodings(images)
 print('Encoding Complete')
 
@@ -52,7 +49,7 @@ cap = cv2.VideoCapture(0)
 
 while True:
     success, img = cap.read()
-    #img = captureScreen()
+    # img = captureScreen()
     imgS = cv2.resize(img, (0, 0), None, 0.25, 0.25)
     imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
 
