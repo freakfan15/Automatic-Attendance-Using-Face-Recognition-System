@@ -7,7 +7,7 @@ const {
 } = require("mongodb");
 // Replace the uri string with your MongoDB deployment's connection string.
 const url =
-  "mongodb+srv://anupamAdmin:anupamAdmin@cluster0.2c2zj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://anupamAdmin:anupamAdmin@cluster0.2c2zj.mongodb.net/student_db";
 const client = new MongoClient(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
