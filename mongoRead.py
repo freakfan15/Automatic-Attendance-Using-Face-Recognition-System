@@ -1,9 +1,7 @@
-from os import truncate
-from dns.rdatatype import NULL
 from pymongo import MongoClient
 
 client = MongoClient(
-    "mongodb+srv://anupamAdmin:anupamAdmin@cluster0.2c2zj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    "mongodb+srv://anupamAdmin:anupamAdmin@cluster0.2c2zj.mongodb.net/student_db")
 db = client.get_database("student_db")
 records = db.get_collection("student_records")
 records.count_documents({})
