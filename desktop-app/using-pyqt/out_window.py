@@ -84,50 +84,56 @@ class Ui_OutputDialog(QDialog, QLabel, QWidget):
                                                                QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
                             if buttonReply == QMessageBox.Yes:
 
-                                date_time_string = datetime.datetime.now().strftime("%y/%m/%d %H:%M:%S")
-                                f.writelines(f'\n{name},{date_time_string},Check In')
+                                now = datetime.datetime.now()
+                                dtString = str(now.strftime('%H:%M:%S'))
+                                date = str(now.strftime('%d-%m-%y'))
+                                number=int(("1910102"+name[-2:]))
+                                f.writelines(f'\n{number},{str(name[:-3])},{date},{dtString}')
                                 self.ClockInButton.setChecked(False)
 
-                                self.NameLabel.setText(name)
+                                self.NameLabel.setText(name[:-3])
+                                self.RollLabel.setText(str(number))
                                 self.StatusLabel.setText('Checked In')
-                                self.HoursLabel.setText('Measuring')
-                                self.MinLabel.setText('')
+                                #self.HoursLabel.setText('Measuring')
+                                #self.MinLabel.setText('')
 
                                 #self.CalculateElapse(name)
-                                #print('Yes clicked and detected')
-                                self.Time1 = datetime.datetime.now()
+                                print('Yes clicked and detected')
+                                #self.Time1 = datetime.datetime.now()
                                 #print(self.Time1)
                                 self.ClockInButton.setEnabled(True)
                             else:
                                 print('Not clicked.')
                                 self.ClockInButton.setEnabled(True)
-            elif self.ClockOutButton.isChecked():
-                self.ClockOutButton.setEnabled(False)
-                with open('Attendance.csv', 'a') as f:
-                        if (name != 'unknown'):
-                            buttonReply = QMessageBox.question(self, 'Cheers ' + name, 'Are you Checking Out?',
-                                                              QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-                            if buttonReply == QMessageBox.Yes:
-                                date_time_string = datetime.datetime.now().strftime("%y/%m/%d %H:%M:%S")
-                                f.writelines(f'\n{name},{date_time_string},Check Out')
-                                self.ClockOutButton.setChecked(False)
+            # elif self.ClockOutButton.isChecked():
+            #     self.ClockOutButton.setEnabled(False)
+            #     with open('Attendance.csv', 'a') as f:
+            #             if (name != 'unknown'):
+            #                 buttonReply = QMessageBox.question(self, 'Cheers ' + name, 'Are you Checking Out?',
+            #                                                   QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            #                 if buttonReply == QMessageBox.Yes:
+            #                     now = datetime.now()
+            #                     dtString = now.strftime('%H:%M:%S')
+            #                     date = now.strftime('%d-%m-%y')
+            #                     f.writelines(f'\n{name},{date},{dtString},Check Out')
+            #                     self.ClockOutButton.setChecked(False)
 
-                                self.NameLabel.setText(name)
-                                self.StatusLabel.setText('Checked Out')
-                                self.Time2 = datetime.datetime.now()
-                                #print(self.Time2)
+            #                     self.NameLabel.setText(name)
+            #                     self.StatusLabel.setText('Checked Out')
+            #                     self.Time2 = datetime.datetime.now()
+            #                     #print(self.Time2)
 
-                                self.ElapseList(name)
-                                self.TimeList2.append(datetime.datetime.now())
-                                CheckInTime = self.TimeList1[-1]
-                                CheckOutTime = self.TimeList2[-1]
-                                self.ElapseHours = (CheckOutTime - CheckInTime)
-                                self.MinLabel.setText("{:.0f}".format(abs(self.ElapseHours.total_seconds() / 60)%60) + 'm')
-                                self.HoursLabel.setText("{:.0f}".format(abs(self.ElapseHours.total_seconds() / 60**2)) + 'h')
-                                self.ClockOutButton.setEnabled(True)
-                            else:
-                                print('Not clicked.')
-                                self.ClockOutButton.setEnabled(True)
+            #                     self.ElapseList(name)
+            #                     self.TimeList2.append(datetime.datetime.now())
+            #                     CheckInTime = self.TimeList1[-1]
+            #                     CheckOutTime = self.TimeList2[-1]
+            #                     self.ElapseHours = (CheckOutTime - CheckInTime)
+            #                     self.MinLabel.setText("{:.0f}".format(abs(self.ElapseHours.total_seconds() / 60)%60) + 'm')
+            #                     self.HoursLabel.setText("{:.0f}".format(abs(self.ElapseHours.total_seconds() / 60**2)) + 'h')
+            #                     self.ClockOutButton.setEnabled(True)
+            #                else:
+            #                   print('Not clicked.')
+            #                    self.ClockOutButton.setEnabled(True)
 
         # face recognition
         faces_cur_frame = face_recognition.face_locations(frame)
@@ -160,27 +166,27 @@ class Ui_OutputDialog(QDialog, QLabel, QWidget):
         msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
 
 
-    def ElapseList(self,name):
-        with open('Attendance.csv', "r") as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 2
+    # def ElapseList(self,name):
+    #     with open('Attendance.csv', "r") as csv_file:
+    #         csv_reader = csv.reader(csv_file, delimiter=',')
+    #         line_count = 2
 
-            Time1 = datetime.datetime.now()
-            Time2 = datetime.datetime.now()
-            for row in csv_reader:
-                for field in row:
-                    if field in row:
-                        if field == 'Check In':
-                            if row[0] == name:
-                                #print(f'\t ROW 0 {row[0]}  ROW 1 {row[1]} ROW2 {row[2]}.')
-                                Time1 = (datetime.datetime.strptime(row[1], '%y/%m/%d %H:%M:%S'))
-                                self.TimeList1.append(Time1)
-                        if field == 'Check Out':
-                            if row[0] == name:
-                                #print(f'\t ROW 0 {row[0]}  ROW 1 {row[1]} ROW2 {row[2]}.')
-                                Time2 = (datetime.datetime.strptime(row[1], '%y/%m/%d %H:%M:%S'))
-                                self.TimeList2.append(Time2)
-                                #print(Time2)
+    #         Time1 = datetime.datetime.now()
+    #         Time2 = datetime.datetime.now()
+    #         for row in csv_reader:
+    #             for field in row:
+    #                 if field in row:
+    #                     if field == 'Check In':
+    #                         if row[0] == name:
+    #                             #print(f'\t ROW 0 {row[0]}  ROW 1 {row[1]} ROW2 {row[2]}.')
+    #                             Time1 = (datetime.datetime.strptime(row[1], '%y/%m/%d %H:%M:%S'))
+    #                             self.TimeList1.append(Time1)
+    #                     # if field == 'Check Out':
+    #                     #     if row[0] == name:
+    #                     #         #print(f'\t ROW 0 {row[0]}  ROW 1 {row[1]} ROW2 {row[2]}.')
+    #                     #         Time2 = (datetime.datetime.strptime(row[1], '%y/%m/%d %H:%M:%S'))
+    #                     #         self.TimeList2.append(Time2)
+    #                     #         #print(Time2)
 
 
 
