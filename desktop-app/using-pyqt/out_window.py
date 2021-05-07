@@ -148,8 +148,8 @@ class Ui_OutputDialog(QDialog, QLabel, QWidget):
             if match[best_match_index]:
                 name = class_names[best_match_index].upper()
                 y1, x2, y2, x1 = faceLoc
-                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                cv2.rectangle(frame, (x1, y2 - 20), (x2, y2), (0, 255, 0), cv2.FILLED)
+                cv2.rectangle(frame, (x1, y1), (x2, y2), (252, 165, 3), 2)
+                cv2.rectangle(frame, (x1, y2 - 20), (x2, y2), (252, 165, 3), cv2.FILLED)
                 cv2.putText(frame, name, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 255, 255), 1)
             mark_attendance(name)
 
