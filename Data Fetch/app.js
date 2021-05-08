@@ -14,9 +14,10 @@ const client = new MongoClient(url, {
 });
 
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"))
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.render("welcome.ejs");
 });
 
 app.get("/records", (req, res) => {
@@ -71,5 +72,5 @@ run().catch(console.dir);
 
 
 app.listen(port, () => {
-  console.log('App listening at http://localhost:${port}');
+  console.log('App listening at http://localhost:'+ port);
 });
