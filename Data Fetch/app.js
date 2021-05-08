@@ -53,6 +53,7 @@ app.get("/stdTable", (req, res) => {
     // console.log(std_record);
     res.render("stdTable", {
       records: std_record,
+      basis: 3,
     });
   });
 });

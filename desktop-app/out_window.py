@@ -23,7 +23,7 @@ class Ui_OutputDialog(QDialog, QLabel, QWidget):
         self.Time_Label.setText(current_time)
         # Add hyperlink to Attendaance Sheet
         self.Attendance.setText(
-            '<a href="https://github.com/freakfan15/Minor-2nd-sem/">Attendance Sheet</a>')
+            '<a href="https://mighty-fjord-96572.herokuapp.com/">Attendance Sheet</a>')
         self.Attendance.setOpenExternalLinks(True)
 
         self.image = None
