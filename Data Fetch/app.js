@@ -17,13 +17,10 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"))
 
 app.get("/", (req, res) => {
-  res.render("welcome.ejs");
+  res.render("student.ejs");
 });
 
 app.get("/records", (req, res) => {
-  //   let std_list = [{ name: "suraj" }, { name: "anupam" }, { name: "yash" }];
-  //   let std_list = fetchData();
-  //   console.log(std_list);
 
   const database = client.db("student_db");
   const students = database.collection("student_records");
@@ -35,6 +32,13 @@ app.get("/records", (req, res) => {
   });
 });
 
+app.get("/Student", function (req, res) {
+  res.redirect("/")
+})
+
+app.get("/Admin", function (req, res) {
+  res.render("Admin.ejs");
+})
 
 app.get("/stdTable", (req, res) => {
   // res.render("stdTable");
@@ -72,5 +76,5 @@ run().catch(console.dir);
 
 
 app.listen(port, () => {
-  console.log('App listening at http://localhost:'+ port);
+  console.log('App listening at http://localhost:' + port);
 });
