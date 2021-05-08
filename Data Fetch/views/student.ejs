@@ -1,5 +1,5 @@
 <%- include("header") -%>
-
+<body>
 <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
     <div class="container">
         <div class="card login-card">
@@ -13,20 +13,16 @@
                             <img src="/images/logo.svg" alt="logo" class="logo">
                         </div>
                         <p class="login-card-description">Enter your Id</p>
-                        <form action="#!">
+                        <form action="/" method="post">
                             <div class="form-group">
-                                <input type="text" name="text" id="textl" class="form-control" placeholder="Id Number">
+                                <input type="number" name="rollno" class="form-control" placeholder="Id Number" required>
+                                <button class="btn btn-block login-btn mb-4" type="submit" name="view">View Dashboard</button>
                             </div>
-
-                            <a href="/stdTable">
-                                <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button"
-                                    value="Login">
-                            </a>
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </main>
+</body>
