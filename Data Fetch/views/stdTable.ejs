@@ -27,14 +27,43 @@
                 </thead>
                 <tbody>
                     <% records.forEach(function(record){ %>
-                    <tr>
-                        <td class="align-middle"><%= record.Enrollment_No %></td>
-                        <td><%= record.Name %></td>
-                        <td><%= record.Date %></td>
-                        <td><%= record.Time %></td>
-                        <!-- <td><%= record.Name %></td> -->
-                        <!-- <td><%= record.Name %></td> -->
-                    </tr>
+                        <%if (basis == 1) { %>
+                            <%if (record.Enrollment_No == rollno) { %>
+                                <tr>
+                                    <td class="align-middle"><%= record.Enrollment_No %></td>
+                                    <td><%= record.Name %></td>
+                                    <td><%= record.Date %></td>
+                                    <td><%= record.Time %></td>
+                                    <!-- <td><%= record.Name %></td> -->
+                                    <!-- <td><%= record.Name %></td> -->
+                                </tr>
+                            <% } %> 
+                        <% } %> 
+
+                        <%if (basis == 2) { %>
+                            <%if (record.Date == date) { %>
+                                <tr>
+                                    <td class="align-middle"><%= record.Enrollment_No %></td>
+                                    <td><%= record.Name %></td>
+                                    <td><%= record.Date %></td>
+                                    <td><%= record.Time %></td>
+                                    <!-- <td><%= record.Name %></td> -->
+                                    <!-- <td><%= record.Name %></td> -->
+                                </tr>
+                            <% } %> 
+                        <% } %> 
+                        
+                        <%if (basis == 3) { %>
+                                <tr>
+                                    <td class="align-middle"><%= record.Enrollment_No %></td>
+                                    <td><%= record.Name %></td>
+                                    <td><%= record.Date %></td>
+                                    <td><%= record.Time %></td>
+                                    <!-- <td><%= record.Name %></td> -->
+                                    <!-- <td><%= record.Name %></td> -->
+                                </tr>
+                        <% } %> 
+                                           
                     <% }); %>
 
                 </tbody>

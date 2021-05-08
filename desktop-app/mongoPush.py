@@ -37,4 +37,3 @@ def insert(name, number, date, time):
         }
         records.insert_one(new_Attendance)
         print("New attendance taken")
-
